@@ -1,0 +1,30 @@
+.done-true {
+  text-decoration: line-through;
+  color: red;
+}
+
+.city-black {
+	color: white;
+    background-color: black;
+}
+
+.city-yellow {
+  	background-color: yellow;
+}
+
+.city-blue {
+	color: white;
+  	background-color: blue;
+}
+
+.column {
+    float: left;
+    width: 15%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
