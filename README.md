@@ -1,3 +1,3 @@
 # Pandemic Legacy Season 2
-# Infected City Tracking App
+Infected City Tracking App
 
