@@ -15,7 +15,7 @@
 			    	<h4>Infection Draw Pile</h4>
 				    <span>{{cities.remainingDraw()}} of {{cities.totalDraw()}} remaining</span>		    
 				    <ul class="unstyled">
-				    	<li ng-repeat="city in cities.drawPile" ng-show="city.count > 0">        	
+				    	<li ng-repeat="city in cities.drawPile" ng-show="city.count > 0 || cities.adminMode">        	
 				        	<span ng-click="cities.redrawStack.length == 0 && cities.discard(city)" class="cursor-{{cities.getDrawPileCursor()}} city-{{city.color}}">{{city.text}} - {{city.count}}</span>
 				        	<span ng-show="cities.adminMode"> - [ <a href="" ng-click="cities.removeFromDraw(city)">remove</a> | <a href="" ng-click="cities.increaseCityCount(city)">+1</a> | <a href="" ng-click="cities.decreaseCityCount(city)">-1</a> ]</span>
 				        </li>
