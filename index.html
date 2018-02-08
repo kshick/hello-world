@@ -9,16 +9,15 @@
 	<body>
 		
     	<h2>Pandemic Legacy Season 2 - City Tracker</h2>
-	    <div ng-app="myApp" ng-controller="cityController as cities">
-	    	
-	    	<div class="row">
-	    	
+	    <div ng-app="myApp" ng-controller="cityController as cities">	
+	    	<div class="row">			
 				<div class="column">
 			    	<h4>Infection Draw Pile</h4>
 				    <span>{{cities.remainingDraw()}} of {{cities.totalDraw()}} remaining</span>		    
 				    <ul class="unstyled">
-				    	<li ng-repeat="city in cities.drawPile" ng-show="city.count > 0" ng-click="cities.redrawStack.length == 0 && cities.discard(city)">        	
-				        	<span class="done-{{city.done}}, city-{{city.color}}">{{city.text}} - {{city.count}}</span>
+				    	<li ng-repeat="city in cities.drawPile" ng-show="city.count > 0">        	
+				        	<span ng-click="cities.redrawStack.length == 0 && cities.discard(city)" class="cursor-{{cities.getDrawPileCursor()}} city-{{city.color}}">{{city.text}} - {{city.count}}</span>
+				        	<span ng-show="cities.adminMode"> - [ <a href="" ng-click="cities.removeFromDraw(city)">remove</a> | <a href="" ng-click="cities.increaseCityCount(city)">+1</a> | <a href="" ng-click="cities.decreaseCityCount(city)">-1</a> ]</span>
 				        </li>
 					</ul>
 							
@@ -33,9 +32,11 @@
 				    	<div ng-repeat="cityGroup in cities.redrawStack">
 					    	<span>Cards remaining - {{cityGroup.length}}</span>
 					    	<ul>
-						    	<li ng-repeat="city in cityGroup track by $index" ng-click="cities.isTopGroup(cityGroup) && cities.discardFromRedraw(city, cityGroup)"> 	
-						        	<span class="done-{{city.done}}, city-{{city.color}}">{{city.text}}</span>  	
+						    	<li ng-repeat="city in cityGroup track by $index"> 	
+						        	<span ng-click="cities.isTopGroup(cityGroup) && cities.discardFromRedraw(city, cityGroup)" class="cursor-{{cities.getReDrawPileCursor(cityGroup)}} city-{{city.color}}">{{city.text}}</span>
+						        	<span ng-show="cities.adminMode"> - [ <a href="" ng-click="cities.removeFromRedraw(cityGroup, city)">remove</a> ]</span> 		
 						        </li>
+						          
 							</ul>
 							<hr ng-show="cities.redrawStack.length > 1">					    	
 				    	</div>
@@ -48,16 +49,19 @@
 				    <span>Discard count - {{cities.discardPile.length}}</span>
 				    <ul>
 				    	<li ng-repeat="city in cities.discardPile track by $index" > 	
-				        	<span class="done-{{city.done}}, city-{{city.color}}">{{city.text}}</span>  	
+				        	<span class="cursor-default city-{{city.color}}">{{city.text}}</span>
+				        	<span ng-show="cities.adminMode"> - [ <a href="" ng-click="cities.removeFromDiscard(city)">remove</a> ]</span>   	  	
 				        </li>
 					</ul>	    	
 		    	</div>
 
 			</div>
 			
+			<p>Click on city to add to discard pile.  Must deplete redraw groups in order. </p>
+	    	<p>Admin Mode - <a href="" ng-click="cities.toggleAdminMode()">{{cities.adminText}}</a></p>
+	    	
 	    </div>
 	    
-	    <p>Click on city to add to discard pile.  Must deplete redraw groups in order. </p>
 	    
 	</body>
 </html>
