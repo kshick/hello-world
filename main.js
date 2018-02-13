@@ -41,23 +41,7 @@ angular.module('myApp', [])
     cities.discardPile = [];
     
     cities.adminMode = false;
-    
-    cities.getDrawPileCursor = function() {
-    	if(cities.redrawStack.length > 0) {
-    		return "default";
-    	}
-    	
-    	return "pointer";
-    };
-    
-    cities.getReDrawPileCursor = function(cityGroup) {
-    	if(cities.isTopGroup(cityGroup)){
-    		return "pointer";
-    	}
-    	
-    	return "default";
-    };
-    
+        
     cities.remainingDraw = function() {
       var i = 0;
       angular.forEach(cities.drawPile, function(city) {
