@@ -22,18 +22,20 @@ angular.module('myApp', [])
     	{text:'Atlanta', color:"blue", count:1, max:1},
     	{text:'Chicago', color:"blue", count:2, max:2},
     	{text:'Denver', color:"blue", count:2, max:2},
+	{text:'Frankfurt', color:"blue", count:2, max:2},
     	{text:'London', color:"blue", count:3, max:3},
     	{text:'New York', color:"blue", count:3, max:3},
+	{text:'Paris', color:"blue", count:2, max:2},
     	{text:'Washington',  color:"blue", count:3, max:3},
-	    {text:'Buenos Aires', color:"yellow", count:2, max:2},
-	    {text:'Jacksonville', color:"yellow", count:3, max:3},
-	    {text:'Mexico City', color:"yellow", count:1, max:1},
-	    {text:'Lima',  color:"yellow", count:1, max:1},
-	    {text:'Lagos', color:"yellow", count:3, max:3},
-	    {text:'Sao Paulo', color:"yellow", count:3, max:3},
-	    {text:'Cairo', color:"black", count:3, max:3},
-	    {text:'Istanbul', color:"black", count:3, max:3},
-	    {text:'Tripoli', color:"black", count:3, max:3}];
+	{text:'Buenos Aires', color:"yellow", count:2, max:2},
+	{text:'Jacksonville', color:"yellow", count:3, max:3},
+	{text:'Mexico City', color:"yellow", count:1, max:1},
+	{text:'Lima',  color:"yellow", count:1, max:1},
+	{text:'Lagos', color:"yellow", count:3, max:3},
+	{text:'Sao Paulo', color:"yellow", count:3, max:3},
+	{text:'Cairo', color:"black", count:3, max:3},
+	{text:'Istanbul', color:"black", count:3, max:3},
+	{text:'Tripoli', color:"black", count:3, max:3}];
  
     //  Epidemic progression - 2,2,2,3,3,4,4,5
 
