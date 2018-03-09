@@ -2,62 +2,86 @@
 <html>
 	<head>
     	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.min.js"></script>
+    	
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  
     	<script src="main.js"></script> 	
 
     	<link rel="stylesheet" href="main.css">
+    	
   	</head>
 	<body>
-		
-    	<h2>Pandemic Legacy Season 2 - City Tracker</h2>
-	    <div ng-app="myApp" ng-controller="cityController as cities">
-	    	
-	    	<div class="row">
-	    	
-				<div class="column">
-			    	<h4>Infection Draw Pile</h4>
-				    <span>{{cities.remainingDraw()}} of {{cities.totalDraw()}} remaining</span>		    
-				    <ul class="unstyled">
-				    	<li ng-repeat="city in cities.drawPile" ng-show="city.count > 0" ng-click="cities.redrawStack.length == 0 && cities.discard(city)">        	
-				        	<span class="done-{{city.done}}, city-{{city.color}}">{{city.text}} - {{city.count}}</span>
-				        </li>
-					</ul>
-							
-					<select ng-model="cities.selectedCity" ng-options="city.text for city in cities.drawPile | NotDepletedCity" ng-change="cities.epidemicButtonDisabled = false"></select>
-					<span><button ng-click="cities.epidemic(cities.selectedCity)" ng-disabled="cities.epidemicButtonDisabled">Epidemic!</button></span>
-					
-		    	</div>
-		    
-		    	<div class="column">  	
-				    <div ng-show="cities.redrawStack.length > 0">
-				    	<h4>Redraw Stacks (top down)</h4>
-				    	<div ng-repeat="cityGroup in cities.redrawStack">
-					    	<span>Cards remaining - {{cityGroup.length}}</span>
-					    	<ul>
-						    	<li ng-repeat="city in cityGroup track by $index" ng-click="cities.isTopGroup(cityGroup) && cities.discardFromRedraw(city, cityGroup)"> 	
-						        	<span class="done-{{city.done}}, city-{{city.color}}">{{city.text}}</span>  	
-						        </li>
-							</ul>
-							<hr ng-show="cities.redrawStack.length > 1">					    	
-				    	</div>
-				    	
-				    </div>	    	
-		    	</div>
-		    
-		    	<div class="column">
-				    <h4>Infection Discard Pile</h4>
-				    <span>Discard count - {{cities.discardPile.length}}</span>
-				    <ul>
-				    	<li ng-repeat="city in cities.discardPile track by $index" > 	
-				        	<span class="done-{{city.done}}, city-{{city.color}}">{{city.text}}</span>  	
-				        </li>
-					</ul>	    	
-		    	</div>
+	<div class="container-fluid" ng-app="myApp" ng-controller="cityController as cities">
+		<div class="jumbotron">
+  			<h1>City Infection Tracker</h1> 
+  			<h4>Pandemic Legacy - Season 2</h4> 
+		</div>
+    	
+    	<div class="row">
+  			<div class="col-md-3">
+  				<h3 class="text-center">Infection Draw Pile</h3>
+				<p class="text-right font-weight-bold">{{cities.remainingDraw()}} of {{cities.totalDraw()}} remaining</p>		    
 
-			</div>
-			
-	    </div>
+					<div ng-repeat="city in cities.drawPile | orderBy: ['color', 'text']" ng-show="city.count > 0 || cities.adminMode">
+						<button type="button" class="btn btn-block city-{{city.color}} border text-left font-weight-bold"  
+							ng-click="!cities.adminMode && cities.redrawStack.length == 0 && cities.discard(city)">{{city.text}} <span class="float-right">{{city.count}}</span>			
+				    	<span ng-show="cities.adminMode" class="font-weight-normal">(<a href="" ng-click="cities.removeFromDraw(city)">remove</a> | <a href="" ng-click="cities.increaseCityCount(city)">+1</a> | <a href="" ng-click="cities.decreaseCityCount(city)">-1</a>)</span></button>
+				  	</div>
+		
+							
+				<select ng-model="cities.selectedCity" ng-options="city.text for city in cities.drawPile | NotDepletedCity | orderBy:'text'" ng-change="cities.epidemicButtonDisabled = false"></select>
+				<span><button ng-click="cities.epidemic(cities.selectedCity)" ng-disabled="cities.epidemicButtonDisabled">Epidemic!</button></span>
+  			<div ng-show="cities.adminMode">
+  				<hr>
+				<form ng-submit="cities.addNewCity()">
+					<h4>Add a new city</h4>
+        			<input type="text" ng-model="cities.newCityText" size="30" placeholder="city name">
+        			<select ng-model="cities.newCityColor" ng-options="color for color in cities.cityColors" ng-init="cities.newCityColor = cities.cityColors[0]"></select>
+        			<select ng-model="cities.newCityCount" ng-options="x for x in [1,2,3,4,5]" ng-init="cities.newCityCount=1"></select>
+					<button>Add City</button>
+      			</form>
+      			<hr>
+  			</div>
+  			</div>
+  			
+  			<div class="col-md-3" ng-show="cities.redrawStack.length > 0">
+				<h3 class="text-center">On Top</h3>
+				<div ng-repeat="cityGroup in cities.redrawStack">
+					
+					<p class="text-right font-weight-bold">Cards remaining - {{cityGroup.length}}</p>
+					<ul>
+						<div ng-repeat="city in cityGroup | orderBy: 'text' track by $index"> 	
+							<button type="button"  class="btn btn-block city-{{city.color}} border font-weight-bold"
+								ng-click="!cities.adminMode && cities.isTopGroup(cityGroup) && cities.discardFromRedraw(city, cityGroup)">{{city.text}}
+						    <span ng-show="cities.adminMode" class="font-weight-normal">(<a href="" ng-click="cities.removeFromRedraw(cityGroup, city)">remove</a>)</span></button> 		
+						</div>
+						          
+					</ul>
+					<hr ng-show="cities.redrawStack.length > 1">					    	
+				</div>  	
+  			</div>
+  			
+  			<div class="col-md-3">
+  				<h3 class="text-center">Infection Discard Pile</h3>
+				<p class="text-right font-weight-bold">Discard count - {{cities.discardPile.length}}</p>
+				<ul>
+					<div ng-repeat="city in cities.discardPile | orderBy: 'text' track by $index" > 	
+						<button ype="button"  class="btn btn-block city-{{city.color}} border font-weight-bold">{{city.text}}
+				    	<span ng-show="cities.adminMode" class="font-weight-normal">(<a href="" ng-click="cities.removeFromDiscard(city)">remove</a>)</span></button>   	  	
+					</div>
+				</ul>	 
+  			</div>
+		</div>
+		
+		<p>Click on city to add to discard pile.  Must deplete redraw groups in order. </p>
+	    <p>Admin Mode - <a href="" ng-click="cities.toggleAdminMode()">{{cities.adminText}}</a></p>
+	    	
+
 	    
-	    <p>Click on city to add to discard pile.  Must deplete redraw groups in order. </p>
-	    
+	</div>    
 	</body>
 </html>
