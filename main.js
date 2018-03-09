@@ -32,7 +32,7 @@ angular.module('myApp', [])
 		{text:'San Francisco', color:"blue", count:1, max:1},
     	{text:'Washington',  color:"blue", count:3, max:3},
 		{text:'Buenos Aires', color:"yellow", count:2, max:2},
-		{text:'Kinshasa', color:"yellow", count:2, max:2}
+		{text:'Kinshasa', color:"yellow", count:1, max:1},
 		{text:'Lagos', color:"yellow", count:3, max:3},
 		{text:'Lima',  color:"yellow", count:1, max:1},
 		{text:'Los Angeles', color:"yellow", count:1, max:1},
