@@ -26,15 +26,26 @@
   				<h3 class="text-center">Infection Draw Pile</h3>
 				<p class="text-right font-weight-bold">{{cities.remainingDraw()}} of {{cities.totalDraw()}} remaining</p>		    
 
-					<div ng-repeat="city in cities.drawPile" ng-show="city.count > 0 || cities.adminMode">
+					<div ng-repeat="city in cities.drawPile | orderBy: ['color', 'text']" ng-show="city.count > 0 || cities.adminMode">
 						<button type="button" class="btn btn-block city-{{city.color}} border text-left font-weight-bold"  
 							ng-click="!cities.adminMode && cities.redrawStack.length == 0 && cities.discard(city)">{{city.text}} <span class="float-right">{{city.count}}</span>			
 				    	<span ng-show="cities.adminMode" class="font-weight-normal">(<a href="" ng-click="cities.removeFromDraw(city)">remove</a> | <a href="" ng-click="cities.increaseCityCount(city)">+1</a> | <a href="" ng-click="cities.decreaseCityCount(city)">-1</a>)</span></button>
 				  	</div>
 		
 							
-				<select ng-model="cities.selectedCity" ng-options="city.text for city in cities.drawPile | NotDepletedCity" ng-change="cities.epidemicButtonDisabled = false"></select>
+				<select ng-model="cities.selectedCity" ng-options="city.text for city in cities.drawPile | NotDepletedCity | orderBy:'text'" ng-change="cities.epidemicButtonDisabled = false"></select>
 				<span><button ng-click="cities.epidemic(cities.selectedCity)" ng-disabled="cities.epidemicButtonDisabled">Epidemic!</button></span>
+  			<div ng-show="cities.adminMode">
+  				<hr>
+				<form ng-submit="cities.addNewCity()">
+					<h4>Add a new city</h4>
+        			<input type="text" ng-model="cities.newCityText" size="30" placeholder="city name">
+        			<select ng-model="cities.newCityColor" ng-options="color for color in cities.cityColors" ng-init="cities.newCityColor = cities.cityColors[0]"></select>
+        			<select ng-model="cities.newCityCount" ng-options="x for x in [1,2,3,4,5]" ng-init="cities.newCityCount=1"></select>
+					<button>Add City</button>
+      			</form>
+      			<hr>
+  			</div>
   			</div>
   			
   			<div class="col-md-3" ng-show="cities.redrawStack.length > 0">
