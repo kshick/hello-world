@@ -23,32 +23,28 @@ angular.module('myApp', [])
     cities.drawPile = [
     	{text:'Atlanta', color:"blue", count:1, max:1},
     	{text:'Chicago', color:"blue", count:2, max:2},
-    	{text:'Denver', color:"blue", count:1, max:1},
+    	{text:'Denver', color:"blue", count:1, max:1}, //max:2
     	{text:'Frankfurt', color:"blue", count:2, max:2},
-    	{text:'London', color:"blue", count:3, max:3},
-    	{text:'New York', color:"blue", count:1, max:1},
-		{text:'Paris', color:"blue", count:2, max:2},
-		{text:'San Francisco', color:"blue", count:2, max:2},
+	{text:'Johannesburg', color:"blue", count:2, max:2},    
+    	{text:'London', color:"blue", count:2, max:2},
+    	{text:'New York', color:"blue", count:1, max:1}, //max:3
+	{text:'Paris', color:"blue", count:2, max:2},
+	{text:'San Francisco', color:"blue", count:1, max:1},
     	{text:'Washington',  color:"blue", count:3, max:3},
-		{text:'Buenos Aires', color:"yellow", count:2, max:2},
-		{text:'Lagos', color:"yellow", count:3, max:3},
-		{text:'Lima',  color:"yellow", count:1, max:1},
-		{text:'Los Angeles', color:"yellow", count:1, max:1},
-		{text:'Mexico City', color:"yellow", count:1, max:1},
-		{text:'Santiago', color:"yellow", count:1, max:1},
-		{text:'Sao Paulo', color:"yellow", count:3, max:3},
-		{text:'Cairo', color:"black", count:3, max:3},
-		{text:'Istanbul', color:"black", count:3, max:3},
-		{text:'Moscow', color:"black", count:1, max:1},
-		{text:'Tripoli', color:"black", count:2, max:2}];
-
-		/* Storing original values here for cards in Package 6 or Destroyed Infection Cards.
-			{text:'Denver', color:"blue", count:2, max:2},
-			{text:'New York', color:"blue", count:3, max:3},
-			{text:'Bogota', color:"yellow", count:2, max:2},
-			{text:'Jacksonville', color:"yellow", count:3, max:3},
-			{text:'Tripoli', color:"black", count:3, max:3}];
-		*/
+	//{text:'Bogota', color:"yellow", count:0, max:0}, //max:2
+	{text:'Buenos Aires', color:"yellow", count:2, max:2},
+	//{text:'Jacksonville', color:"yellow", count:0, max:0}, //max:3
+	{text:'Kinshasa', color:"yellow", count:1, max:1},
+	{text:'Lagos', color:"yellow", count:3, max:3},
+	{text:'Lima',  color:"yellow", count:1, max:1},
+	{text:'Los Angeles', color:"yellow", count:1, max:1},
+	{text:'Mexico City', color:"yellow", count:1, max:1},
+	{text:'Santiago', color:"yellow", count:1, max:1},
+	{text:'Sao Paulo', color:"yellow", count:3, max:3},
+	{text:'Cairo', color:"black", count:3, max:3},
+	{text:'Istanbul', color:"black", count:3, max:3},
+	{text:'Moscow', color:"black", count:1, max:1},
+	{text:'Tripoli', color:"black", count:2, max:2}]; //max:3
     
     //  Epidemic progression - 2,2,2,3,3,4,4,5
 
