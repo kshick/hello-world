@@ -3,23 +3,23 @@ angular.module('myApp', [])
 	.filter('NotDepletedCity', function() {
 		return function(cities) {
 			var filteredCities = [];
-			
+
 			angular.forEach(cities, function(city) {
 				if(city.count > 0){
-				       filteredCities.push(city); 	
+				       filteredCities.push(city);
 				}
-				
+
 			});
-			
+
 			return filteredCities;
 		}
 	})
-	
+
   .controller('cityController', function() {
     var cities = this;
-    
+
     cities.cityColors = ["black", "blue", "yellow"];
-     
+
     cities.drawPile = [
     	{text:'Atlanta', color:"blue", count:1, max:1},
     	{text:'Chicago', color:"blue", count:2, max:2},
@@ -48,11 +48,11 @@ angular.module('myApp', [])
     
     //  Epidemic progression - 2,2,2,3,3,4,4,5
 
-    
+
     cities.discardPile = [];
-    
+
     cities.adminMode = false;
-        
+
     cities.remainingDraw = function() {
       var i = 0;
       angular.forEach(cities.drawPile, function(city) {
@@ -60,8 +60,8 @@ angular.module('myApp', [])
       });
       return i;
     };
- 
-    
+
+
     cities.totalDraw = function() {
         var i = 0;
         angular.forEach(cities.drawPile, function(city) {
@@ -69,7 +69,7 @@ angular.module('myApp', [])
         });
         return i;
       };
-    
+
       cities.discard = function(city) {
     	  if(cities.redrawStack && cities.redrawStack.length > 0){
     		  alert("Please deplete redraw stack first.");
@@ -77,96 +77,94 @@ angular.module('myApp', [])
     		  if(city.count > 0){
     			  city.count = city.count -1;
     			  cities.discardPile.push(city);
-    		  }    		  
+    		  }
     	  }
       };
-    
+
       cities.epidemicButtonDisabled = true;
-      
+
       cities.discardFromRedraw = function(city, cityGroup) {
     	  var index = cityGroup.indexOf(city);
     	  cityGroup.splice(index, 1);
     	  cities.discardPile.push(city);
     	  if(cityGroup.length == 0){
     		  var cityGroupIndex = cities.redrawStack.indexOf(cityGroup);
-    		  cities.redrawStack.splice(cityGroupIndex, 1);   		  
+    		  cities.redrawStack.splice(cityGroupIndex, 1);
     	  }
       };
-    
+
       cities.isTopGroup = function(cityGroup) {
-    	  
-    	var index = cities.redrawStack.indexOf(cityGroup);  	
-    	return index == 0;	
-    	
+
+    	var index = cities.redrawStack.indexOf(cityGroup);
+    	return index == 0;
+
       };
-      
+
       cities.redrawStack = [];
-      
+
       cities.epidemic = function(selectedCity) {
- 
+
     	selectedCity.count = selectedCity.count -1;
     	cities.discardPile.push(selectedCity);
-    	
+
     	var redraw = new Array();
     	angular.forEach(cities.discardPile, function(city) {
     		redraw.push(city);
     	});
     	cities.redrawStack.unshift(redraw);
     	cities.discardPile = [];
-    	
+
     	cities.selectedCity=" ";
     	cities.epidemicButtonDisabled = true;
     };
-    
+
     //Admin functions
-    
+
     cities.adminText = "Enable";
-    
+
     cities.toggleAdminMode = function() {
-    	
+
     	cities.adminMode = !cities.adminMode;
-    	
+
     	if(cities.adminMode){
     		cities.adminText = "Disable";
     	} else {
     		cities.adminText = "Enable";
     	}
-    	
+
     };
-    
+
     cities.removeFromDraw = function(city) {
     	if(confirm("Remove " + city.text + "?")){
     		var index = cities.drawPile.indexOf(city);
     		cities.drawPile.splice(index, 1);
     	}
     };
-    
+
     cities.removeFromRedraw = function(cityGroup, city) {
     	if(confirm("Remove " + city.text + "?")){
     		var index = cityGroup.indexOf(city);
       	  	cityGroup.splice(index, 1);
     	}
     };
-    
+
     cities.removeFromDiscard = function(city) {
     	if(confirm("Remove " + city.text + "?")){
     		var index = cities.discardPile.indexOf(city);
     		cities.discardPile.splice(index, 1);
     	}
     };
-    
+
     cities.increaseCityCount = function(city) {
     	city.count = city.count + 1;
     }
-    
+
     cities.decreaseCityCount = function(city) {
     	city.count = city.count -1;
     }
-    
+
     cities.addNewCity = function() {
         cities.drawPile.push({text:cities.newCityText, color:cities.newCityColor, count:cities.newCityCount, max:cities.newCityCount});
         //TODO: add alerts to page with success message
     };
-      
-    
   });
