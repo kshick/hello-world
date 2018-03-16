@@ -21,6 +21,7 @@ angular.module('myApp', [])
     cities.cityColors = ["black", "blue", "yellow"];
 
     cities.drawPile = [
+			{text:'Hollow Men Gather', color:"green", count:0, max:4}
     	{text:'Atlanta', color:"blue", count:1, max:1},
     	{text:'Chicago', color:"blue", count:1, max:1},
     	{text:'Denver', color:"blue", count:1, max:1}, //max:2
@@ -55,7 +56,10 @@ angular.module('myApp', [])
 
 
     cities.discardPile = [
-			{text:'Hollow Men Gather', color:"green", count:4, max:4}
+			{text:'Hollow Men Gather', color:"green", count:0, max:4},
+			{text:'Hollow Men Gather', color:"green", count:0, max:4},
+			{text:'Hollow Men Gather', color:"green", count:0, max:4},
+			{text:'Hollow Men Gather', color:"green", count:0, max:4}
 		];
 
     cities.adminMode = false;
