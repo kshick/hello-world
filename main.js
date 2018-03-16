@@ -23,15 +23,15 @@ angular.module('myApp', [])
     cities.drawPile = [
 			{text:'Hollow Men Gather', color:"green", count:0, max:4},
     	{text:'Atlanta', color:"blue", count:1, max:1},
-    	{text:'Chicago', color:"blue", count:1, max:1},
+    	{text:'Chicago', color:"blue", count:1, max:1}, //max:2
     	{text:'Denver', color:"blue", count:1, max:1}, //max:2
     	{text:'Frankfurt', color:"blue", count:2, max:2},
-	{text:'Johannesburg', color:"blue", count:1, max:1},
-    	{text:'London', color:"blue", count:2, max:2},
+	{text:'Johannesburg', color:"blue", count:1, max:1}, //max:2
+    	{text:'London', color:"blue", count:2, max:2}, //max:3
     	{text:'New York', color:"blue", count:1, max:1}, //max:3
 	{text:'Paris', color:"blue", count:2, max:2},
-	{text:'San Francisco', color:"blue", count:1, max:1},
-    	{text:'Washington',  color:"blue", count:2, max:2},
+	{text:'San Francisco', color:"blue", count:1, max:1}, //max:2
+    	{text:'Washington',  color:"blue", count:2, max:2}, //max:3
 	//{text:'Bogota', color:"yellow", count:0, max:0}, //max:2
 	{text:'Buenos Aires', color:"yellow", count:2, max:2},
 	//{text:'Jacksonville', color:"yellow", count:0, max:0}, //max:3
@@ -45,7 +45,7 @@ angular.module('myApp', [])
 	{text:'Sao Paulo', color:"yellow", count:3, max:3},
   {text:'Antananarivo', color:"black", count:2, max:2},
 	{text:'Baghdad', color:"black", count:2, max:2},
-	{text:'Cairo', color:"black", count:1, max:1},
+	{text:'Cairo', color:"black", count:1, max:1}, //max:3
 	{text:'Istanbul', color:"black", count:3, max:3},
 	{text:'Moscow', color:"black", count:1, max:1},
 	{text:'New Mumbai', color:"black", count:2, max:2},
