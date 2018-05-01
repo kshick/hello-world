@@ -21,35 +21,48 @@ angular.module('myApp', [])
     cities.cityColors = ["black", "blue", "yellow", "red"];
 
     cities.drawPile = [
+			{text:'Hollow Men Gather', color:"green", count:0, max:4},
     	{text:'Atlanta', color:"blue", count:1, max:1},
-    	{text:'Chicago', color:"blue", count:2, max:2},
+    	//{text:'Chicago', color:"blue", count:1, max:1}, //max:2
     	{text:'Denver', color:"blue", count:1, max:1}, //max:2
     	{text:'Frankfurt', color:"blue", count:2, max:2},
-	{text:'Johannesburg', color:"blue", count:2, max:2},    
-    	{text:'London', color:"blue", count:2, max:2},
+	{text:'Johannesburg', color:"blue", count:1, max:1}, //max:2
+    	{text:'London', color:"blue", count:2, max:2}, //max:3
     	{text:'New York', color:"blue", count:1, max:1}, //max:3
 	{text:'Paris', color:"blue", count:2, max:2},
-	{text:'San Francisco', color:"blue", count:1, max:1},
-    	{text:'Washington',  color:"blue", count:3, max:3},
-	//{text:'Bogota', color:"yellow", count:0, max:0}, //max:2
+	{text:'San Francisco', color:"blue", count:1, max:1}, //max:2
+    	{text:'Washington',  color:"blue", count:2, max:2}, //max:3
+	{text:'Bogota', color:"yellow", count:1, max:1}, //max:2
 	{text:'Buenos Aires', color:"yellow", count:2, max:2},
+	{text:'Dar es Salaam', color:"yellow", count:2, max:2},
 	//{text:'Jacksonville', color:"yellow", count:0, max:0}, //max:3
+  {text:'Khartoum', color:"yellow", count:1, max:1},
 	{text:'Kinshasa', color:"yellow", count:1, max:1},
 	{text:'Lagos', color:"yellow", count:3, max:3},
 	{text:'Lima',  color:"yellow", count:1, max:1},
-	{text:'Los Angeles', color:"yellow", count:1, max:1},
+	//{text:'Los Angeles', color:"yellow", count:1, max:1},
 	{text:'Mexico City', color:"yellow", count:1, max:1},
 	{text:'Santiago', color:"yellow", count:1, max:1},
 	{text:'Sao Paulo', color:"yellow", count:3, max:3},
-	{text:'Cairo', color:"black", count:3, max:3},
+  {text:'Antananarivo', color:"black", count:2, max:2},
+	{text:'Baghdad', color:"black", count:2, max:2},
+	{text:'Cairo', color:"black", count:1, max:1}, //max:3
 	{text:'Istanbul', color:"black", count:3, max:3},
+	{text:'Kolkata', color:"black", count:1, max:1},
 	{text:'Moscow', color:"black", count:1, max:1},
+	{text:'New Mumbai', color:"black", count:2, max:2},
+	{text:'Riyadh', color:"black", count:2, max:2},
 	{text:'Tripoli', color:"black", count:2, max:2}]; //max:3
-    
+
     //  Epidemic progression - 2,2,2,3,3,4,4,5
 
 
-    cities.discardPile = [];
+    cities.discardPile = [
+			{text:'Hollow Men Gather', color:"green", count:0, max:4},
+			{text:'Hollow Men Gather', color:"green", count:0, max:4},
+			{text:'Hollow Men Gather', color:"green", count:0, max:4},
+			{text:'Hollow Men Gather', color:"green", count:0, max:4}
+		];
 
     cities.adminMode = false;
 
