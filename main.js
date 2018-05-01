@@ -18,7 +18,7 @@ angular.module('myApp', [])
   .controller('cityController', function() {
     var cities = this;
 
-    cities.cityColors = ["black", "blue", "yellow"];
+    cities.cityColors = ["black", "blue", "yellow", "red"];
 
     cities.drawPile = [
     	{text:'Atlanta', color:"blue", count:1, max:1},
