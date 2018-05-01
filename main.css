@@ -12,6 +12,11 @@
   	background-color: blue;
 }
 
+.city-red {
+	color: white;
+	background-color: red;
+}
+
 .column {
     float: left;
     width: 20%;
