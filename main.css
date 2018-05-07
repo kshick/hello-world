@@ -17,6 +17,11 @@
 	background-color: green;
 }
 
+.city-red {
+	color: white;
+	background-color: red;
+}
+
 .column {
     float: left;
     width: 20%;
