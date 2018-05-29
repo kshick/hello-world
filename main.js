@@ -54,7 +54,7 @@ angular.module('myApp', [])
 	{text:'Riyadh', color:"black", count:2, max:2},
 	{text:'Tehran', color:"black", count:1, max:1},
 	{text:'Tripoli', color:"black", count:2, max:2},
-	{text:'Hong Kong', color:"red", count:1, max:1}.
+	{text:'Hong Kong', color:"red", count:1, max:1},
     	{text:'Jakarta', color:"red", count:1, max:1}]; 
 
     //  Epidemic progression - 2,2,2,3,3,4,4,5
